@@ -23,6 +23,10 @@ public class Main {
         BookCreator bookCreatorWithEmptyTitle = Book.create().title("").paperback().pages(100);
         printMessage(bookCreatorWithEmptyTitle);
 
+        System.out.println("\n----- Create: Too thick book ------");
+        BookCreator thickBookCreator = Book.create().title("Thick book").paperback().pages(3000);
+        printMessage(thickBookCreator);
+
         System.out.println("\n----- Create: Valid book ------");
         BookCreator bookCreator = Book.create().title("The book").paperback().pages(200);
         printMessage(bookCreator);

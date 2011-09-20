@@ -11,6 +11,6 @@ public class BookAttributes extends Attributes {
     public BookPagesStateGuard pages = new BookPagesStateGuard();
 
     public BookAttributes() {
-        addAttributes(title, binding, pages);
+        addAttributes(title, binding, pages, new BindingValidator(pages, binding));
     }
 }

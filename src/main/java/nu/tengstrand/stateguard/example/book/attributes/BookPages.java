@@ -7,6 +7,10 @@ public class BookPages {
         this.pages = pages;
     }
 
+    public int value() {
+        return pages;
+    }
+
     @Override
     public String toString() {
         return String.valueOf(pages);

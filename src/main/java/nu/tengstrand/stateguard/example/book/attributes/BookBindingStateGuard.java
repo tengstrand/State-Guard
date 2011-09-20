@@ -20,6 +20,10 @@ public class BookBindingStateGuard extends StateGuard<BookBinding> {
         creator.binding.setValue(binding);
     }
 
+    public boolean isPaperback() {
+        return creator.binding.value() == BookBinding.PAPERBACK;
+    }
+
     @Override
     protected Validatable validatable() {
         return creator.binding;

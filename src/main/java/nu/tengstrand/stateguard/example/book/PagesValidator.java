@@ -22,7 +22,7 @@ public class PagesValidator implements Validatable {
 
     public ValidationMessages validationMessages() {
         if (pages <= 0) {
-            return new ValidationMessages("Attribute 'pages' must be greater than zero, but is " + pages, attribute);
+            return new ValidationMessages("Attribute 'pages' must be greater than zero, but was " + pages, attribute);
         } else if ((pages % 2) != 0){
             return new ValidationMessages("Attribute 'pages' (" + pages + ") must be an even number", attribute);
         }
