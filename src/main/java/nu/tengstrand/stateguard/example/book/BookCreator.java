@@ -9,7 +9,7 @@ public class BookCreator extends AttributesStateGuard<Book> {
     private BookAttributes attributes = new BookAttributes();
     private ValidStateCreator<Book> stateCreator = new ValidStateCreator<Book>() {
         public Book createValidState() {
-            return new Book(attributes.title.asValidState(), attributes.binding.asValidState());
+            return new Book(attributes.title.asValidState(), attributes.binding.asValidState(), attributes.pages.asValidState());
         }
     };
 
@@ -24,12 +24,19 @@ public class BookCreator extends AttributesStateGuard<Book> {
     }
 
     public class Binding {
-        public BookCreator paperback() {
+        public Pages paperback() {
             attributes.binding.setBinding(BookBinding.PAPERBACK);
-            return BookCreator.this;
+            return new Pages();
         }
-        public BookCreator hardback() {
+        public Pages hardback() {
             attributes.binding.setBinding(BookBinding.HARDBACK);
+            return new Pages();
+        }
+    }
+
+    public class Pages {
+        public BookCreator pages(int pages) {
+            attributes.pages.setPages(pages);
             return BookCreator.this;
         }
     }

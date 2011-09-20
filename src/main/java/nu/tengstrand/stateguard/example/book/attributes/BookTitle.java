@@ -1,9 +1,9 @@
 package nu.tengstrand.stateguard.example.book.attributes;
 
 public class BookTitle {
-    private String title;
+    private final String title;
 
-    public BookTitle(String title) {
+    BookTitle(String title) {
         this.title = title;
     }
 

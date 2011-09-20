@@ -5,7 +5,7 @@ import nu.tengstrand.stateguard.ValidStateCreator;
 import nu.tengstrand.stateguard.Validatable;
 import nu.tengstrand.stateguard.validator.NonEmptyString;
 
-public class BookTitleStateGuard extends StateGuard<BookTitle>{
+public class BookTitleStateGuard extends StateGuard<BookTitle> {
     private final BookTitleValidStateCreator creator = new BookTitleValidStateCreator();
 
     private static class BookTitleValidStateCreator implements ValidStateCreator<BookTitle> {

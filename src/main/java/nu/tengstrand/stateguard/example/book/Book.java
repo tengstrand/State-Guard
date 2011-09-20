@@ -1,15 +1,18 @@
 package nu.tengstrand.stateguard.example.book;
 
 import nu.tengstrand.stateguard.example.book.attributes.BookBinding;
+import nu.tengstrand.stateguard.example.book.attributes.BookPages;
 import nu.tengstrand.stateguard.example.book.attributes.BookTitle;
 
 public class Book {
     private final BookTitle title;
     private final BookBinding binding;
+    private final BookPages pages;
 
-    Book(BookTitle title, BookBinding binding) {
+    Book(BookTitle title, BookBinding binding, BookPages pages) {
         this.title = title;
         this.binding = binding;
+        this.pages = pages;
     }
 
     public static BookBuilder build() {
@@ -25,6 +28,7 @@ public class Book {
         return "Book{" +
                 "title='" + title +
                 "', binding=" + binding +
+                ", pages=" + pages +
                 '}';
     }
 }

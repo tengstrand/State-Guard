@@ -7,7 +7,7 @@ public class BookBuilder extends AttributesStateGuard<Book> {
     private BookAttributes attributes = new BookAttributes();
     private ValidStateCreator<Book> stateCreator = new ValidStateCreator<Book>() {
         public Book createValidState() {
-            return new Book(attributes.title.asValidState(), attributes.binding.asValidState());
+            return new Book(attributes.title.asValidState(), attributes.binding.asValidState(), attributes.pages.asValidState());
         }
     };
 
@@ -21,6 +21,11 @@ public class BookBuilder extends AttributesStateGuard<Book> {
 
     public BookBuilder binding(BookBinding binding) {
         attributes.binding.setBinding(binding);
+        return this;
+    }
+
+    public BookBuilder pages(int pages) {
+        attributes.pages.setPages(pages);
         return this;
     }
 
