@@ -1,13 +1,13 @@
 package nu.tengstrand.stateguard.example.book.attributes;
 
 import nu.tengstrand.stateguard.*;
-import nu.tengstrand.stateguard.example.book.Pages;
+import nu.tengstrand.stateguard.example.book.PagesValidator;
 
 public class BookPagesStateGuard extends StateGuard<BookPages> {
     private final BookPagesValidStateCreator creator = new BookPagesValidStateCreator();
 
     private static class BookPagesValidStateCreator implements ValidStateCreator<BookPages> {
-        Pages pages = new Pages();
+        PagesValidator pages = new PagesValidator();
 
         public BookPages createValidState() {
             return new BookPages(pages.value());

@@ -4,7 +4,7 @@ import nu.tengstrand.stateguard.Attribute;
 import nu.tengstrand.stateguard.Validatable;
 import nu.tengstrand.stateguard.ValidationMessages;
 
-public class Pages implements Validatable {
+public class PagesValidator implements Validatable {
     private int pages = 0;
     private final Attribute attribute = new Attribute("pages");
 
