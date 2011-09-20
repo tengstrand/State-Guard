@@ -21,6 +21,11 @@ public class PagesValidator implements Validatable {
     }
 
     public ValidationMessages validationMessages() {
-        return new ValidationMessages("Illegal number of pages (" + pages + "), must be an even positive number greater than zero", attribute);
+        if (pages <= 0) {
+            return new ValidationMessages("Attribute 'pages' must be greater than zero, but is " + pages, attribute);
+        } else if ((pages % 2) != 0){
+            return new ValidationMessages("Attribute 'pages' (" + pages + ") must be an even number", attribute);
+        }
+        return new ValidationMessages();
     }
 }
