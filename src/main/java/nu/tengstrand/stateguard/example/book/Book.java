@@ -13,6 +13,10 @@ public class Book {
         return new BookBuilder();
     }
 
+    public static BookCreator.Title create() {
+        return new BookCreator().new Title();
+    }
+
     @Override
     public String toString() {
         return "Book{" +

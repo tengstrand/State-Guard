@@ -3,13 +3,14 @@ package nu.tengstrand.stateguard.example.book;
 import nu.tengstrand.stateguard.StateGuard;
 import nu.tengstrand.stateguard.ValidStateCreator;
 import nu.tengstrand.stateguard.Validatable;
+import nu.tengstrand.stateguard.validator.NonEmptyString;
 import nu.tengstrand.stateguard.validator.NotNull;
 
 public class BookTitleStateGuard extends StateGuard<BookTitle>{
     private final BookTitleValidStateCreator creator = new BookTitleValidStateCreator();
 
     private static class BookTitleValidStateCreator implements ValidStateCreator<BookTitle> {
-        NotNull<String> title = new NotNull<String>("title");
+        NonEmptyString title = new NonEmptyString("title");
 
         public BookTitle createValidState() {
             return new BookTitle(title.value());
