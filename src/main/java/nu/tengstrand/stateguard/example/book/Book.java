@@ -1,5 +1,8 @@
 package nu.tengstrand.stateguard.example.book;
 
+import nu.tengstrand.stateguard.example.book.attributes.BookBinding;
+import nu.tengstrand.stateguard.example.book.attributes.BookTitle;
+
 public class Book {
     private final BookTitle title;
     private final BookBinding binding;

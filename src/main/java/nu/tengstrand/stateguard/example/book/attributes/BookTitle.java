@@ -1,4 +1,4 @@
-package nu.tengstrand.stateguard.example.book;
+package nu.tengstrand.stateguard.example.book.attributes;
 
 public class BookTitle {
     private String title;

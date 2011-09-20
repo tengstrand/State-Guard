@@ -1,4 +1,4 @@
-package nu.tengstrand.stateguard.example.book;
+package nu.tengstrand.stateguard.example.book.attributes;
 
 import nu.tengstrand.stateguard.StateGuard;
 import nu.tengstrand.stateguard.ValidStateCreator;

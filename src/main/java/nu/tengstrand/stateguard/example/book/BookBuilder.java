@@ -1,6 +1,7 @@
 package nu.tengstrand.stateguard.example.book;
 
 import nu.tengstrand.stateguard.*;
+import nu.tengstrand.stateguard.example.book.attributes.BookBinding;
 
 public class BookBuilder extends AttributesStateGuard<Book> {
     private BookAttributes attributes = new BookAttributes();

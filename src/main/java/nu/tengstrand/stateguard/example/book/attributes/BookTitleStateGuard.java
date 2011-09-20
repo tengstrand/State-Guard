@@ -1,10 +1,9 @@
-package nu.tengstrand.stateguard.example.book;
+package nu.tengstrand.stateguard.example.book.attributes;
 
 import nu.tengstrand.stateguard.StateGuard;
 import nu.tengstrand.stateguard.ValidStateCreator;
 import nu.tengstrand.stateguard.Validatable;
 import nu.tengstrand.stateguard.validator.NonEmptyString;
-import nu.tengstrand.stateguard.validator.NotNull;
 
 public class BookTitleStateGuard extends StateGuard<BookTitle>{
     private final BookTitleValidStateCreator creator = new BookTitleValidStateCreator();

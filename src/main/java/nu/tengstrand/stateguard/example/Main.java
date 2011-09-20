@@ -2,7 +2,7 @@ package nu.tengstrand.stateguard.example;
 
 import nu.tengstrand.stateguard.Validatable;
 import nu.tengstrand.stateguard.example.book.Book;
-import nu.tengstrand.stateguard.example.book.BookBinding;
+import nu.tengstrand.stateguard.example.book.attributes.BookBinding;
 import nu.tengstrand.stateguard.example.book.BookBuilder;
 import nu.tengstrand.stateguard.example.book.BookCreator;
 

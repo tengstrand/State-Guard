@@ -3,6 +3,7 @@ package nu.tengstrand.stateguard.example.book;
 import nu.tengstrand.stateguard.Attributes;
 import nu.tengstrand.stateguard.AttributesStateGuard;
 import nu.tengstrand.stateguard.ValidStateCreator;
+import nu.tengstrand.stateguard.example.book.attributes.BookBinding;
 
 public class BookCreator extends AttributesStateGuard<Book> {
     private BookAttributes attributes = new BookAttributes();
