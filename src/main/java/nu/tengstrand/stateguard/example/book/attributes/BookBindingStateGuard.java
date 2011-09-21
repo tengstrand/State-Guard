@@ -8,6 +8,10 @@ import nu.tengstrand.stateguard.validator.NotNull;
 public class BookBindingStateGuard extends StateGuard<BookBinding> {
     private NotNull<BookBinding> binding = new NotNull<BookBinding>(new ValidationId("binding"));
 
+    public BookBindingStateGuard() {
+        addValidator(binding);
+    }
+
     public void setBinding(BookBinding binding) {
         this.binding.setValue(binding);
     }
@@ -19,10 +23,5 @@ public class BookBindingStateGuard extends StateGuard<BookBinding> {
     @Override
     public BookBinding createValidState() {
         return binding.value();
-    }
-
-    @Override
-    protected Validatable validatable() {
-        return binding;
     }
 }

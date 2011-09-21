@@ -1,17 +1,40 @@
 package nu.tengstrand.stateguard;
 
-import nu.tengstrand.stateguard.example.book.attributes.BookBinding;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public abstract class StateGuard<T> implements Validatable {
-    protected abstract Validatable validatable();
+    private List<Validatable> validators = new ArrayList<Validatable>();
+
     protected abstract T createValidState();
 
+    protected void addValidator(Validatable validatable) {
+        validators.add(validatable);
+    }
+
+    protected void addValidators(Validatable validatable, Validatable... validatables) {
+        validators.add(validatable);
+        validators.addAll(Arrays.asList(validatables));
+    }
+
     public boolean isValid() {
-        return validatable().isValid();
+        for (Validatable validator : validators) {
+            if (!validator.isValid()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public ValidationMessages validationMessages() {
-        return validatable().validationMessages();
+        ValidationMessages validationMessages = new ValidationMessages();
+        for (Validatable validator : validators) {
+            if (!validator.isValid()) {
+                validationMessages = validationMessages.createMessages(validator.validationMessages());
+            }
+        }
+        return validationMessages;
     }
 
     public void execute(Command command) {
@@ -19,9 +42,13 @@ public abstract class StateGuard<T> implements Validatable {
     }
 
     public T asValidState() {
-        if (!validatable().isValid()) {
-            throw new ValidateException(validatable().validationMessages().firstMessage());
+        if (!isValid()) {
+            throw new ValidateException(firstValidationMessage());
         }
         return createValidState();
+    }
+
+    private String firstValidationMessage() {
+        return validators.iterator().next().validationMessages().firstMessage();
     }
 }

@@ -19,9 +19,8 @@ public class StateGuardTest {
     private static class XStateGuard extends StateGuard<X> {
         private VX vx = new VX();
 
-        @Override
-        protected Validatable validatable() {
-            return vx;
+        public XStateGuard() {
+            addValidator(vx);
         }
 
         @Override
