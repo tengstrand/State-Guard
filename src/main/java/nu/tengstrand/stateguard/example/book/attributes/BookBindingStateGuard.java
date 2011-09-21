@@ -1,37 +1,28 @@
 package nu.tengstrand.stateguard.example.book.attributes;
 
 import nu.tengstrand.stateguard.StateGuard;
-import nu.tengstrand.stateguard.ValidStateCreator;
 import nu.tengstrand.stateguard.Validatable;
 import nu.tengstrand.stateguard.ValidationId;
 import nu.tengstrand.stateguard.validator.NotNull;
 
 public class BookBindingStateGuard extends StateGuard<BookBinding> {
-    private final BookTitleValidStateCreator creator = new BookTitleValidStateCreator();
-
-    private static class BookTitleValidStateCreator implements ValidStateCreator<BookBinding> {
-        NotNull<BookBinding> binding = new NotNull<BookBinding>(new ValidationId("binding"));
-
-        public BookBinding createValidState() {
-            return binding.value();
-        }
-    }
+    private NotNull<BookBinding> binding = new NotNull<BookBinding>(new ValidationId("binding"));
 
     public void setBinding(BookBinding binding) {
-        creator.binding.setValue(binding);
+        this.binding.setValue(binding);
     }
 
     public boolean isPaperback() {
-        return creator.binding.value() == BookBinding.PAPERBACK;
+        return binding.value() == BookBinding.PAPERBACK;
+    }
+
+    @Override
+    public BookBinding createValidState() {
+        return binding.value();
     }
 
     @Override
     protected Validatable validatable() {
-        return creator.binding;
-    }
-
-    @Override
-    protected ValidStateCreator<BookBinding> validStateCreator() {
-        return creator;
+        return binding;
     }
 }

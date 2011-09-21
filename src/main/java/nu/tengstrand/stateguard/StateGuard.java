@@ -1,8 +1,10 @@
 package nu.tengstrand.stateguard;
 
+import nu.tengstrand.stateguard.example.book.attributes.BookBinding;
+
 public abstract class StateGuard<T> implements Validatable {
     protected abstract Validatable validatable();
-    protected abstract ValidStateCreator<T> validStateCreator();
+    protected abstract T createValidState();
 
     public boolean isValid() {
         return validatable().isValid();
@@ -20,6 +22,6 @@ public abstract class StateGuard<T> implements Validatable {
         if (!validatable().isValid()) {
             throw new ValidateException(validatable().validationMessages().firstMessage());
         }
-        return validStateCreator().createValidState();
+        return createValidState();
     }
 }

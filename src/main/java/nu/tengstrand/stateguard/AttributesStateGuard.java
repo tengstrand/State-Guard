@@ -2,7 +2,7 @@ package nu.tengstrand.stateguard;
 
 public abstract class AttributesStateGuard<T> implements Validatable {
     protected abstract Attributes attributes();
-    protected abstract ValidStateCreator<T> validStateCreator();
+    protected abstract T createValidState();
 
     public boolean isValid() {
         return attributes().isValid();
@@ -16,6 +16,6 @@ public abstract class AttributesStateGuard<T> implements Validatable {
         if (!attributes().isValid()) {
             throw new ValidateException(attributes().validationMessages().firstMessage());
         }
-        return validStateCreator().createValidState();
+        return createValidState();
     }
 }

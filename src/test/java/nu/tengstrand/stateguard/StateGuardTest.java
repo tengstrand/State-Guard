@@ -25,12 +25,8 @@ public class StateGuardTest {
         }
 
         @Override
-        protected ValidStateCreator<X> validStateCreator() {
-            return new ValidStateCreator<X>() {
-                public X createValidState() {
-                    return new X();
-                }
-            };
+        protected X createValidState() {
+            return new X();
         }
     }
 

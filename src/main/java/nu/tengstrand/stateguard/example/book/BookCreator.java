@@ -2,16 +2,10 @@ package nu.tengstrand.stateguard.example.book;
 
 import nu.tengstrand.stateguard.Attributes;
 import nu.tengstrand.stateguard.AttributesStateGuard;
-import nu.tengstrand.stateguard.ValidStateCreator;
 import nu.tengstrand.stateguard.example.book.attributes.BookBinding;
 
 public class BookCreator extends AttributesStateGuard<Book> {
     private BookAttributes attributes = new BookAttributes();
-    private ValidStateCreator<Book> stateCreator = new ValidStateCreator<Book>() {
-        public Book createValidState() {
-            return new Book(attributes.title.asValidState(), attributes.binding.asValidState(), attributes.pages.asValidState());
-        }
-    };
 
     BookCreator() {
     }
@@ -47,7 +41,7 @@ public class BookCreator extends AttributesStateGuard<Book> {
     }
 
     @Override
-    protected ValidStateCreator<Book> validStateCreator() {
-        return stateCreator;
+    protected Book createValidState() {
+        return new Book(attributes.title.asValidState(), attributes.binding.asValidState(), attributes.pages.asValidState());
     }
 }
