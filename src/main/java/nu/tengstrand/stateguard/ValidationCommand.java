@@ -1,5 +1,5 @@
 package nu.tengstrand.stateguard;
 
-public interface Command {
+public interface ValidationCommand {
     void execute(ValidationMessage validationMessage);
 }

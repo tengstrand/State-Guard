@@ -12,7 +12,7 @@ public class StateGuardTest {
             return false;
         }
         public ValidationMessages validationMessages() {
-            return new ValidationMessages("Invalid!!", new ValidationId("x"));
+            return new ValidationMessages("Invalid!!", "x");
         }
     }
 

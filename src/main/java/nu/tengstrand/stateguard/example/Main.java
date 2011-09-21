@@ -22,6 +22,7 @@ public class Main {
         System.out.println("\n----- Create: Empty title ------");
         BookCreator bookCreatorWithEmptyTitle = Book.create().title("").paperback().pages(100);
         printMessage(bookCreatorWithEmptyTitle);
+        bookCreatorWithEmptyTitle.validate(new BookValidationCommand());
 
         System.out.println("\n----- Create: Thick book ------");
         BookCreator thickBookCreator = Book.create().title("Thick book").paperback().pages(3000);

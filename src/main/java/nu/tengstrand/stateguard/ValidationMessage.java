@@ -1,16 +1,12 @@
 package nu.tengstrand.stateguard;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class ValidationMessage {
+    public final Object id;
     public final String message;
-    public final ValidationId validationId;
 
-    public ValidationMessage(String message, ValidationId validationId) {
+    public ValidationMessage(String message, Object id) {
         this.message = message;
-        this.validationId = validationId;
+        this.id = id;
     }
 
     @Override
@@ -21,7 +17,7 @@ public class ValidationMessage {
         ValidationMessage that = (ValidationMessage) o;
 
         if (message != null ? !message.equals(that.message) : that.message != null) return false;
-        if (validationId != null ? !validationId.equals(that.validationId) : that.validationId != null) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
 
         return true;
     }
@@ -29,12 +25,13 @@ public class ValidationMessage {
     @Override
     public int hashCode() {
         int result = message != null ? message.hashCode() : 0;
-        result = 31 * result + (validationId != null ? validationId.hashCode() : 0);
+        result = 31 * result + (id != null ? id.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
-        return message;
+        return "ValidationMessage{id=" + id +
+                ", message=" + message + "}";
     }
 }
