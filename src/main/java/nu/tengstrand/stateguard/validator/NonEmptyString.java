@@ -1,23 +1,23 @@
 package nu.tengstrand.stateguard.validator;
 
-import nu.tengstrand.stateguard.Attribute;
+import nu.tengstrand.stateguard.ValidationId;
 import nu.tengstrand.stateguard.Validatable;
 import nu.tengstrand.stateguard.ValidationMessages;
 
 public class NonEmptyString implements Validatable {
     private String string;
-    private final Attribute attribute;
+    private final ValidationId validationId;
 
     /**
      * Lazy initialization.
      */
-    public NonEmptyString(String attributeName) {
-        this(null, attributeName);
+    public NonEmptyString(ValidationId validationId) {
+        this(null, validationId);
     }
 
-    public NonEmptyString(String string, String attributeName) {
+    public NonEmptyString(String string, ValidationId validationId) {
         this.string = string;
-        this.attribute = new Attribute(attributeName);
+        this.validationId = validationId;
     }
 
     public String value() {
@@ -33,6 +33,6 @@ public class NonEmptyString implements Validatable {
     }
 
     public ValidationMessages validationMessages() {
-        return new ValidationMessages("Attribute '" + attribute + "' can not be empty", attribute);
+        return new ValidationMessages("Attribute '" + validationId + "' can not be empty", validationId);
     }
 }

@@ -1,6 +1,6 @@
 package nu.tengstrand.stateguard.example.book;
 
-import nu.tengstrand.stateguard.Attribute;
+import nu.tengstrand.stateguard.ValidationId;
 import nu.tengstrand.stateguard.Validatable;
 import nu.tengstrand.stateguard.ValidationMessages;
 import nu.tengstrand.stateguard.example.book.attributes.BookBindingStateGuard;
@@ -32,6 +32,6 @@ public class BindingValidator implements Validatable {
             return new ValidationMessages();
         else
             return new ValidationMessages("Paperback books can not have more than 2000 pages, but was " + pages.asValidState().value() + " pages",
-                new Attribute("binding"), new Attribute("pages"));
+                new ValidationId("paperback too thick"));
     }
 }

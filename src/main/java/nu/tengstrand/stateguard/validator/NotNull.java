@@ -1,23 +1,23 @@
 package nu.tengstrand.stateguard.validator;
 
-import nu.tengstrand.stateguard.Attribute;
+import nu.tengstrand.stateguard.ValidationId;
 import nu.tengstrand.stateguard.Validatable;
 import nu.tengstrand.stateguard.ValidationMessages;
 
 public class NotNull<T> implements Validatable {
     private T notNullObject;
-    private final Attribute attribute;
+    private final ValidationId validationId;
 
     /**
      * Lazy initialization.
      */
-    public NotNull(String attributeName) {
-        this(null, attributeName);
+    public NotNull(ValidationId validationId) {
+        this(null, validationId);
     }
 
-    public NotNull(T notNullObject, String attributeName) {
+    public NotNull(T notNullObject, ValidationId validationId) {
         this.notNullObject = notNullObject;
-        this.attribute = new Attribute(attributeName);
+        this.validationId = validationId;
     }
 
     public T value() {
@@ -33,6 +33,6 @@ public class NotNull<T> implements Validatable {
     }
 
     public ValidationMessages validationMessages() {
-        return new ValidationMessages("Attribute '" + attribute + "' can not be null", attribute);
+        return new ValidationMessages("Attribute '" + validationId + "' can not be null", validationId);
     }
 }

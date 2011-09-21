@@ -23,7 +23,7 @@ public class Main {
         BookCreator bookCreatorWithEmptyTitle = Book.create().title("").paperback().pages(100);
         printMessage(bookCreatorWithEmptyTitle);
 
-        System.out.println("\n----- Create: Too thick book ------");
+        System.out.println("\n----- Create: Thick book ------");
         BookCreator thickBookCreator = Book.create().title("Thick book").paperback().pages(3000);
         printMessage(thickBookCreator);
 

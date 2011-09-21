@@ -10,8 +10,8 @@ public class ValidationMessages implements Iterable<ValidationMessage> {
     public ValidationMessages() {
     }
 
-    public ValidationMessages(String message, Attribute attribute, Attribute... attributes) {
-        messages.add(new ValidationMessage(message, attribute, attributes));
+    public ValidationMessages(String message, ValidationId validationId) {
+        messages.add(new ValidationMessage(message, validationId));
     }
 
     private ValidationMessages(ValidationMessages validationMessages1, ValidationMessages validationMessages2) {
@@ -21,6 +21,12 @@ public class ValidationMessages implements Iterable<ValidationMessage> {
 
     public ValidationMessages createMessages(ValidationMessages validationMessages) {
         return new ValidationMessages(this, validationMessages);
+    }
+
+    public void execute(Command command) {
+        for (ValidationMessage message : messages) {
+            command.execute(message);
+        }
     }
 
     public String firstMessage() {

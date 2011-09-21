@@ -12,6 +12,10 @@ public abstract class StateGuard<T> implements Validatable {
         return validatable().validationMessages();
     }
 
+    public void execute(Command command) {
+        validationMessages().execute(command);
+    }
+
     public T asValidState() {
         if (!validatable().isValid()) {
             throw new ValidateException(validatable().validationMessages().firstMessage());

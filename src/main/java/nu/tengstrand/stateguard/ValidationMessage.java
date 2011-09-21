@@ -6,12 +6,11 @@ import java.util.List;
 
 public class ValidationMessage {
     public final String message;
-    public List<Attribute> attributes = new ArrayList<Attribute>();
+    public final ValidationId validationId;
 
-    public ValidationMessage(String message, Attribute attribute, Attribute... attributes) {
+    public ValidationMessage(String message, ValidationId validationId) {
         this.message = message;
-        this.attributes.add(attribute);
-        this.attributes.addAll(Arrays.asList(attributes));
+        this.validationId = validationId;
     }
 
     @Override
@@ -21,8 +20,8 @@ public class ValidationMessage {
 
         ValidationMessage that = (ValidationMessage) o;
 
-        if (attributes != null ? !attributes.equals(that.attributes) : that.attributes != null) return false;
         if (message != null ? !message.equals(that.message) : that.message != null) return false;
+        if (validationId != null ? !validationId.equals(that.validationId) : that.validationId != null) return false;
 
         return true;
     }
@@ -30,7 +29,7 @@ public class ValidationMessage {
     @Override
     public int hashCode() {
         int result = message != null ? message.hashCode() : 0;
-        result = 31 * result + (attributes != null ? attributes.hashCode() : 0);
+        result = 31 * result + (validationId != null ? validationId.hashCode() : 0);
         return result;
     }
 
