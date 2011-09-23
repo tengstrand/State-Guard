@@ -37,10 +37,6 @@ public abstract class StateGuard<T> implements Validatable {
         return validationMessages;
     }
 
-    public void validate(ValidationCommand command) {
-        validationMessages().validate(command);
-    }
-
     public T asValidState() {
         if (!isValid()) {
             throw new ValidateException(firstValidationMessage());

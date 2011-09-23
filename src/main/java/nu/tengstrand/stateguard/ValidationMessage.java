@@ -1,12 +1,21 @@
 package nu.tengstrand.stateguard;
 
-public class ValidationMessage {
-    public final Object id;
-    public final String message;
+import java.text.MessageFormat;
+import java.util.Arrays;
 
-    public ValidationMessage(String message, Object id) {
+public class ValidationMessage {
+    public final String message;
+    public final Object[] arguments;
+
+    public ValidationMessage(String message, Object... arguments) {
         this.message = message;
-        this.id = id;
+        this.arguments = arguments;
+    }
+
+    public String getMessage() {
+        String msg = MessageFormat.format(message, arguments);
+        msg = MessageFormat.format("Attribute ''{0}'' can not be null", "kalle");
+        return msg;
     }
 
     @Override
@@ -17,7 +26,8 @@ public class ValidationMessage {
         ValidationMessage that = (ValidationMessage) o;
 
         if (message != null ? !message.equals(that.message) : that.message != null) return false;
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        // Probably incorrect - comparing Object[] arrays with Arrays.equals
+        if (!Arrays.equals(arguments, that.arguments)) return false;
 
         return true;
     }
@@ -25,13 +35,12 @@ public class ValidationMessage {
     @Override
     public int hashCode() {
         int result = message != null ? message.hashCode() : 0;
-        result = 31 * result + (id != null ? id.hashCode() : 0);
+        result = 31 * result + (arguments != null ? Arrays.hashCode(arguments) : 0);
         return result;
     }
 
     @Override
     public String toString() {
-        return "ValidationMessage{id=" + id +
-                ", message=" + message + "}";
+        return getMessage();
     }
 }

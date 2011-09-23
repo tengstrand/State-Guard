@@ -1,11 +1,10 @@
 package nu.tengstrand.stateguard.example.book.attributes;
 
 import nu.tengstrand.stateguard.StateGuard;
-import nu.tengstrand.stateguard.example.book.BookAttribute;
 import nu.tengstrand.stateguard.validator.NotNull;
 
 public class BookBindingStateGuard extends StateGuard<BookBinding> {
-    private NotNull<BookBinding> binding = new NotNull<BookBinding>(BookAttribute.BINDING);
+    private NotNull<BookBinding> binding = new NotNull<BookBinding>("binding");
 
     public BookBindingStateGuard() {
         addValidator(binding);

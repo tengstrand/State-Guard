@@ -5,18 +5,18 @@ import nu.tengstrand.stateguard.ValidationMessages;
 
 public class NotNull<T> implements Validatable {
     private T notNullObject;
-    private final Object id;
+    private final String attributeName;
 
     /**
      * Lazy initialization.
      */
-    public NotNull(Object id) {
-        this(null, id);
+    public NotNull(String attributeName) {
+        this(null, attributeName);
     }
 
-    public NotNull(T notNullObject, Object id) {
+    public NotNull(T notNullObject, String attributeName) {
         this.notNullObject = notNullObject;
-        this.id = id;
+        this.attributeName = attributeName;
     }
 
     public T value() {
@@ -32,6 +32,6 @@ public class NotNull<T> implements Validatable {
     }
 
     public ValidationMessages validationMessages() {
-        return new ValidationMessages("Attribute '" + id + "' can not be null", id);
+        return new ValidationMessages("Attribute ''{0}'' can not be null", attributeName);
     }
 }

@@ -5,18 +5,18 @@ import nu.tengstrand.stateguard.ValidationMessages;
 
 public class NonEmptyString implements Validatable {
     private String string;
-    private final Object id;
+    private final String attributeName;
 
     /**
      * Lazy initialization.
      */
-    public NonEmptyString(Object id) {
-        this(null, id);
+    public NonEmptyString(String attributeName) {
+        this(null, attributeName);
     }
 
-    public NonEmptyString(String string, Object id) {
+    public NonEmptyString(String string, String attributeName) {
         this.string = string;
-        this.id = id;
+        this.attributeName = attributeName;
     }
 
     public String value() {
@@ -32,6 +32,6 @@ public class NonEmptyString implements Validatable {
     }
 
     public ValidationMessages validationMessages() {
-        return new ValidationMessages("Attribute '" + id + "' can not be empty", id);
+        return new ValidationMessages("Attribute ''{0}'' can not be empty", attributeName);
     }
 }

@@ -1,8 +1,6 @@
 package nu.tengstrand.stateguard;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class ValidationMessages implements Iterable<ValidationMessage> {
     private final List<ValidationMessage> messages = new ArrayList<ValidationMessage>();
@@ -23,9 +21,9 @@ public class ValidationMessages implements Iterable<ValidationMessage> {
         return new ValidationMessages(this, validationMessages);
     }
 
-    public void validate(ValidationCommand command) {
+    public void printMessages() {
         for (ValidationMessage message : messages) {
-            command.execute(message);
+            System.out.println(message.getMessage());
         }
     }
 
