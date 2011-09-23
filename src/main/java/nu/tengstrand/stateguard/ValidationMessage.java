@@ -5,11 +5,19 @@ import java.util.Arrays;
 
 public class ValidationMessage {
     public final String message;
-    public final Object[] arguments;
+    public Object[] arguments;
 
-    public ValidationMessage(String message, Object... arguments) {
+    private ValidationMessage(String message) {
         this.message = message;
+    }
+
+    public static ValidationMessage message(String message) {
+        return new ValidationMessage(message);
+    }
+
+    public ValidationMessage arguments(Object... arguments) {
         this.arguments = arguments;
+        return this;
     }
 
     public String getMessage() {

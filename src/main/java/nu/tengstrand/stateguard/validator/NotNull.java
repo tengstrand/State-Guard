@@ -1,30 +1,33 @@
 package nu.tengstrand.stateguard.validator;
 
 import nu.tengstrand.stateguard.Validatable;
+import nu.tengstrand.stateguard.ValidationMessage;
 import nu.tengstrand.stateguard.ValidationMessages;
 
 public class NotNull<T> implements Validatable {
-    private T notNullObject;
     private final String attributeName;
+    private T notNullObject;
+    private String messageKey;
 
-    /**
-     * Lazy initialization.
-     */
-    public NotNull(String attributeName) {
-        this(null, attributeName);
+    private NotNull(String attributeName) {
+        this.attributeName = attributeName;
     }
 
-    public NotNull(T notNullObject, String attributeName) {
+    public static NotNull withAttributeName(String attributeName) {
+        return new NotNull(attributeName);
+    }
+
+    public void withValue(T notNullObject) {
         this.notNullObject = notNullObject;
-        this.attributeName = attributeName;
+    }
+
+    public NotNull withMessageKey(String messageKey) {
+        this.messageKey = messageKey;
+        return this;
     }
 
     public T value() {
         return notNullObject;
-    }
-
-    public void setValue(T notNullObject) {
-        this.notNullObject = notNullObject;
     }
 
     public boolean isValid() {
@@ -32,6 +35,6 @@ public class NotNull<T> implements Validatable {
     }
 
     public ValidationMessages validationMessages() {
-        return new ValidationMessages("Attribute ''{0}'' can not be null", attributeName);
+        return ValidationMessages.add(ValidationMessage.message("Attribute ''{0}'' can not be null").arguments(attributeName));
     }
 }

@@ -1,6 +1,7 @@
 package nu.tengstrand.stateguard.example.book;
 
 import nu.tengstrand.stateguard.Validatable;
+import nu.tengstrand.stateguard.ValidationMessage;
 import nu.tengstrand.stateguard.ValidationMessages;
 
 public class PagesValidator implements Validatable {
@@ -20,10 +21,10 @@ public class PagesValidator implements Validatable {
 
     public ValidationMessages validationMessages() {
         if (pages <= 0) {
-            return new ValidationMessages("Attribute ''pages'' must be greater than zero, but was {0}", pages);
+            return ValidationMessages.add(ValidationMessage.message("Attribute ''pages'' must be greater than zero, but was {0}").arguments(pages));
         } else if ((pages % 2) != 0){
-            return new ValidationMessages("Attribute ''pages'' must be an even number, but was {0}", pages);
+            return ValidationMessages.add(ValidationMessage.message("Attribute ''pages'' must be an even number, but was {0}").arguments(pages));
         }
-        return new ValidationMessages();
+        return ValidationMessages.withoutMessage();
     }
 }

@@ -1,17 +1,32 @@
 package nu.tengstrand.stateguard;
 
+import sun.misc.resources.Messages;
+
 import java.util.*;
 
 public class ValidationMessages implements Iterable<ValidationMessage> {
     private final List<ValidationMessage> messages = new ArrayList<ValidationMessage>();
 
-    public ValidationMessages() {
+    private ValidationMessages() {
     }
 
-    public ValidationMessages(String message, Object id) {
-        messages.add(new ValidationMessage(message, id));
+    private ValidationMessages(ValidationMessage validationMessage) {
+        messages.add(validationMessage);
     }
 
+    public static ValidationMessages withoutMessage() {
+        return new ValidationMessages();
+    }
+
+    public static ValidationMessages add(ValidationMessage validationMessage) {
+        return new ValidationMessages(validationMessage);
+    }
+/*
+    public ValidationMessage withMessage(ValidationMessage validationMessage) {
+        messages.add(validationMessage);
+        return this;
+    }
+  */
     private ValidationMessages(ValidationMessages validationMessages1, ValidationMessages validationMessages2) {
         messages.addAll(validationMessages1.messages);
         messages.addAll(validationMessages2.messages);

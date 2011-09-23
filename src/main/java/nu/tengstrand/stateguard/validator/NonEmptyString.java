@@ -1,30 +1,28 @@
 package nu.tengstrand.stateguard.validator;
 
 import nu.tengstrand.stateguard.Validatable;
+import nu.tengstrand.stateguard.ValidationMessage;
 import nu.tengstrand.stateguard.ValidationMessages;
 
 public class NonEmptyString implements Validatable {
     private String string;
     private final String attributeName;
 
-    /**
-     * Lazy initialization.
-     */
-    public NonEmptyString(String attributeName) {
-        this(null, attributeName);
+    private NonEmptyString(String attributeName) {
+        this.attributeName = attributeName;
     }
 
-    public NonEmptyString(String string, String attributeName) {
-        this.string = string;
-        this.attributeName = attributeName;
+    public static NonEmptyString attributeName(String attributeName) {
+        return new NonEmptyString(attributeName);
+    }
+
+    public NonEmptyString withValue(String value) {
+        this.string = value;
+        return this;
     }
 
     public String value() {
         return string;
-    }
-
-    public void setValue(String string) {
-        this.string = string;
     }
 
     public boolean isValid() {
@@ -32,6 +30,6 @@ public class NonEmptyString implements Validatable {
     }
 
     public ValidationMessages validationMessages() {
-        return new ValidationMessages("Attribute ''{0}'' can not be empty", attributeName);
+        return ValidationMessages.add(ValidationMessage.message("Attribute ''{0}'' can not be empty").arguments(attributeName));
     }
 }

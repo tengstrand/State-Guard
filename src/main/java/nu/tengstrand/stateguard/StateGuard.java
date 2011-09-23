@@ -28,7 +28,7 @@ public abstract class StateGuard<T> implements Validatable {
     }
 
     public ValidationMessages validationMessages() {
-        ValidationMessages validationMessages = new ValidationMessages();
+        ValidationMessages validationMessages = ValidationMessages.withoutMessage();
         for (Validatable validator : validators) {
             if (!validator.isValid()) {
                 validationMessages = validationMessages.createMessages(validator.validationMessages());

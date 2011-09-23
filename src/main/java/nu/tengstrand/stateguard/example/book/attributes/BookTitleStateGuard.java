@@ -4,14 +4,14 @@ import nu.tengstrand.stateguard.StateGuard;
 import nu.tengstrand.stateguard.validator.NonEmptyString;
 
 public class BookTitleStateGuard extends StateGuard<BookTitle> {
-    private NonEmptyString title = new NonEmptyString("title");
+    private NonEmptyString title = NonEmptyString.attributeName("title");
 
     public BookTitleStateGuard() {
         addValidator(title);
     }
 
     public void setTitle(String title) {
-        this.title.setValue(title);
+        this.title.withValue(title);
     }
 
     @Override
