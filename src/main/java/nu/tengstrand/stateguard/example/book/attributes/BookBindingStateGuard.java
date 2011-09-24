@@ -4,7 +4,7 @@ import nu.tengstrand.stateguard.StateGuard;
 import nu.tengstrand.stateguard.validator.NotNull;
 
 public class BookBindingStateGuard extends StateGuard<BookBinding> {
-    private NotNull<BookBinding> binding = NotNull.withAttributeName("binding");
+    private NotNull<BookBinding> binding = NotNull.attributeName("binding");
 
     public BookBindingStateGuard() {
         addValidator(binding);

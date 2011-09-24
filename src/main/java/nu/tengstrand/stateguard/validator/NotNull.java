@@ -13,7 +13,7 @@ public class NotNull<T> implements Validatable {
         this.attributeName = attributeName;
     }
 
-    public static NotNull withAttributeName(String attributeName) {
+    public static NotNull attributeName(String attributeName) {
         return new NotNull(attributeName);
     }
 

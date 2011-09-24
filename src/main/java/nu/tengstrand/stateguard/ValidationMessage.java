@@ -20,9 +20,8 @@ public class ValidationMessage {
         return this;
     }
 
-    public String getMessage() {
+    public String getFormattedMessage() {
         String msg = MessageFormat.format(message, arguments);
-        msg = MessageFormat.format("Attribute ''{0}'' can not be null", "kalle");
         return msg;
     }
 
@@ -49,6 +48,6 @@ public class ValidationMessage {
 
     @Override
     public String toString() {
-        return getMessage();
+        return "ValidationMessage{message=" + message + ", arguments=" + Arrays.asList(arguments) + "}";
     }
 }

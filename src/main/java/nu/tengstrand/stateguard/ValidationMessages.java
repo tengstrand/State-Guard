@@ -1,13 +1,15 @@
 package nu.tengstrand.stateguard;
 
-import sun.misc.resources.Messages;
-
 import java.util.*;
 
 public class ValidationMessages implements Iterable<ValidationMessage> {
     private final List<ValidationMessage> messages = new ArrayList<ValidationMessage>();
 
     private ValidationMessages() {
+    }
+
+    private ValidationMessages(List<ValidationMessage> messages) {
+        this.messages.addAll(messages);
     }
 
     private ValidationMessages(ValidationMessage validationMessage) {
@@ -21,24 +23,18 @@ public class ValidationMessages implements Iterable<ValidationMessage> {
     public static ValidationMessages add(ValidationMessage validationMessage) {
         return new ValidationMessages(validationMessage);
     }
-/*
-    public ValidationMessage withMessage(ValidationMessage validationMessage) {
-        messages.add(validationMessage);
-        return this;
-    }
-  */
-    private ValidationMessages(ValidationMessages validationMessages1, ValidationMessages validationMessages2) {
-        messages.addAll(validationMessages1.messages);
-        messages.addAll(validationMessages2.messages);
-    }
 
-    public ValidationMessages createMessages(ValidationMessages validationMessages) {
-        return new ValidationMessages(this, validationMessages);
+    public ValidationMessages mergeMessages(ValidationMessages validationMessages) {
+        List<ValidationMessage> messages = new ArrayList<ValidationMessage>();
+        messages.addAll(validationMessages.messages);
+        messages.addAll(this.messages);
+
+        return new ValidationMessages(messages);
     }
 
     public void printMessages() {
         for (ValidationMessage message : messages) {
-            System.out.println(message.getMessage());
+            System.out.println(message.getFormattedMessage());
         }
     }
 
