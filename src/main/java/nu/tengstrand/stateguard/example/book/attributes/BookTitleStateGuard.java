@@ -4,7 +4,7 @@ import nu.tengstrand.stateguard.StateGuard;
 import nu.tengstrand.stateguard.validator.NonEmptyString;
 
 public class BookTitleStateGuard extends StateGuard<BookTitle> {
-    private NonEmptyString title = NonEmptyString.attributeName("title");
+    private NonEmptyString title = NonEmptyString.attributeName("title").messageKey("missingvalue");
 
     public BookTitleStateGuard() {
         addValidator(title);

@@ -35,6 +35,6 @@ public class NotNull<T> implements Validatable {
     }
 
     public ValidationMessages validationMessages() {
-        return ValidationMessages.add(ValidationMessage.message("Attribute ''{0}'' can not be null").arguments(attributeName));
+        return ValidationMessages.add(ValidationMessage.message("Attribute ''{0}'' can not be null").arguments(attributeName).messageKey(messageKey));
     }
 }

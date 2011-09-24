@@ -7,6 +7,7 @@ import nu.tengstrand.stateguard.ValidationMessages;
 public class NonEmptyString implements Validatable {
     private String string;
     private final String attributeName;
+    private String messageKey;
 
     private NonEmptyString(String attributeName) {
         this.attributeName = attributeName;
@@ -21,6 +22,11 @@ public class NonEmptyString implements Validatable {
         return this;
     }
 
+    public NonEmptyString messageKey(String messageKey) {
+        this.messageKey = messageKey;
+        return this;
+    }
+
     public String value() {
         return string;
     }
@@ -30,6 +36,6 @@ public class NonEmptyString implements Validatable {
     }
 
     public ValidationMessages validationMessages() {
-        return ValidationMessages.add(ValidationMessage.message("Attribute ''{0}'' can not be empty").arguments(attributeName));
+        return ValidationMessages.add(ValidationMessage.message("Attribute ''{0}'' can not be empty").arguments(attributeName).messageKey(messageKey));
     }
 }

@@ -2,10 +2,12 @@ package nu.tengstrand.stateguard;
 
 import java.text.MessageFormat;
 import java.util.Arrays;
+import java.util.ResourceBundle;
 
 public class ValidationMessage {
-    public final String message;
-    public Object[] arguments;
+    final String message;
+    Object[] arguments;
+    String messageKey;
 
     private ValidationMessage(String message) {
         this.message = message;
@@ -20,9 +22,24 @@ public class ValidationMessage {
         return this;
     }
 
+    public ValidationMessage messageKey(String messageKey) {
+        this.messageKey = messageKey;
+        return this;
+    }
+
     public String getFormattedMessage() {
         String msg = MessageFormat.format(message, arguments);
         return msg;
+    }
+
+    public String getFormattedMessage(ResourceBundle resourceBundle) {
+        if (messageKey != null) {
+            String message = resourceBundle.getString(messageKey);
+            if (message != null) {
+                return MessageFormat.format(message, arguments);
+            }
+        }
+        return MessageFormat.format(message, arguments);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package nu.tengstrand.stateguard.example;
 
+import nu.tengstrand.stateguard.PrintMessageCommand;
 import nu.tengstrand.stateguard.Validatable;
 import nu.tengstrand.stateguard.example.book.Book;
 import nu.tengstrand.stateguard.example.book.attributes.BookBinding;
@@ -10,8 +11,6 @@ import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
 public class Main {
-    static ResourceBundle resourceBundle = PropertyResourceBundle.getBundle("validationMessages");
-
     public static void main(String[] args) {
         System.out.println("----- Build: Missing attributes ------");
         BookBuilder bookBuilder = Book.build().title("My Book");
@@ -27,9 +26,9 @@ public class Main {
         BookCreator bookCreatorWithEmptyTitle = Book.create().title("").paperback().pages(100);
         printMessage(bookCreatorWithEmptyTitle);
 
-        //ResourceBundle resourceBundle = ResourceBundle.getBundle("validationMessages");
-
-        bookCreatorWithEmptyTitle.validationMessages().printMessages();
+        // Print all formatted messages, replace default message for 'title'.
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("validationMessages");
+        bookCreatorWithEmptyTitle.validationMessages().executeFormattedMessages(new PrintMessageCommand(), resourceBundle);
 
         System.out.println("\n----- Create: Thick book ------");
         BookCreator thickBookCreator = Book.create().title("Thick book").paperback().pages(3000);

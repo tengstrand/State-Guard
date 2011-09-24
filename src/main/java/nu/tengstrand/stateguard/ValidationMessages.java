@@ -32,11 +32,18 @@ public class ValidationMessages implements Iterable<ValidationMessage> {
         return new ValidationMessages(messages);
     }
 
-    public void printMessages() {
+    public void executeFormattedMessages(MessageCommand messageCommand) {
         for (ValidationMessage message : messages) {
-            System.out.println(message.getFormattedMessage());
+            messageCommand.execute(message.getFormattedMessage());
         }
     }
+
+    public void executeFormattedMessages(MessageCommand messageCommand, ResourceBundle resourceBundle) {
+        for (ValidationMessage validationMessage : messages) {
+            messageCommand.execute(validationMessage.getFormattedMessage(resourceBundle));
+        }
+    }
+
 
     public String firstMessage() {
         if (messages.size() > 0) {
