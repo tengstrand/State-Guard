@@ -44,10 +44,9 @@ public class ValidationMessages implements Iterable<ValidationMessage> {
         }
     }
 
-
     public String firstMessage() {
         if (messages.size() > 0) {
-            return messages.get(0).message;
+            return messages.iterator().next().message;
         }
         return "";
     }
