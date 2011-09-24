@@ -7,24 +7,23 @@ import nu.tengstrand.stateguard.example.book.attributes.BookBinding;
 import nu.tengstrand.stateguard.example.book.BookBuilder;
 import nu.tengstrand.stateguard.example.book.BookCreator;
 
-import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("----- Build: Missing attributes ------");
         BookBuilder bookBuilder = Book.build().title("My Book");
-        printMessage(bookBuilder);
+        printValidationMessages(bookBuilder);
 
         System.out.println("\n----- Build: With binding + pages ------");
         bookBuilder.binding(BookBinding.PAPERBACK).pages(50);
-        printMessage(bookBuilder);
+        printValidationMessages(bookBuilder);
         Book bookWithMissingBinding = bookBuilder.asValidState();
         System.out.println("Book: " + bookWithMissingBinding);
 
         System.out.println("\n----- Create: Empty title ------");
         BookCreator bookCreatorWithEmptyTitle = Book.create().title("").paperback().pages(100);
-        printMessage(bookCreatorWithEmptyTitle);
+        printValidationMessages(bookCreatorWithEmptyTitle);
 
         // Print all formatted messages, replace default message for 'title'.
         ResourceBundle resourceBundle = ResourceBundle.getBundle("validationMessages");
@@ -32,16 +31,16 @@ public class Main {
 
         System.out.println("\n----- Create: Thick book ------");
         BookCreator thickBookCreator = Book.create().title("Thick book").paperback().pages(3000);
-        printMessage(thickBookCreator);
+        printValidationMessages(thickBookCreator);
 
         System.out.println("\n----- Create: Valid book ------");
         BookCreator bookCreator = Book.create().title("The book").paperback().pages(200);
-        printMessage(bookCreator);
+        printValidationMessages(bookCreator);
         Book book = bookCreator.asValidState();
         System.out.println("Book: " + book);
     }
 
-    public static void printMessage(Validatable validatable) {
+    public static void printValidationMessages(Validatable validatable) {
         System.out.println("valid = " + validatable.isValid() + ", message = " + validatable.validationMessages());
     }
 }
