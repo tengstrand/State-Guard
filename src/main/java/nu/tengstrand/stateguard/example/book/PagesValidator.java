@@ -21,9 +21,9 @@ public class PagesValidator implements Validatable {
 
     public ValidationMessages validationMessages() {
         if (pages <= 0) {
-            return ValidationMessages.add(ValidationMessage.message("Attribute ''pages'' must be greater than zero, but was {0}").arguments(pages));
+            return ValidationMessages.message("Attribute ''pages'' must be greater than zero, but was {0}").arguments(pages);
         } else if ((pages % 2) != 0){
-            return ValidationMessages.add(ValidationMessage.message("Attribute ''pages'' must be an even number, but was {0}").arguments(pages));
+            return ValidationMessages.message("Attribute ''pages'' must be an even number, but was {0}").arguments(pages);
         }
         return ValidationMessages.withoutMessage();
     }

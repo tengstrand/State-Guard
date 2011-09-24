@@ -9,12 +9,8 @@ public class ValidationMessage {
     Object[] arguments;
     String messageKey;
 
-    private ValidationMessage(String message) {
+    public ValidationMessage(String message) {
         this.message = message;
-    }
-
-    public static ValidationMessage message(String message) {
-        return new ValidationMessage(message);
     }
 
     public ValidationMessage arguments(Object... arguments) {

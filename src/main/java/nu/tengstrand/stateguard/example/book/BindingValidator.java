@@ -31,6 +31,6 @@ public class BindingValidator implements Validatable {
         if (isValid())
             return ValidationMessages.withoutMessage();
 
-        return ValidationMessages.add(ValidationMessage.message("Paperback books can not have more than 2000 pages, but was {0} pages").arguments(pages.asValidState().value()));
+        return ValidationMessages.message("Paperback books can not have more than 2000 pages, but was {0} pages").arguments(pages.asValidState().value());
     }
 }

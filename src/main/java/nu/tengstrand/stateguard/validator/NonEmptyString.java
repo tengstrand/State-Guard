@@ -36,6 +36,6 @@ public class NonEmptyString implements Validatable {
     }
 
     public ValidationMessages validationMessages() {
-        return ValidationMessages.add(ValidationMessage.message("Attribute ''{0}'' can not be empty").arguments(attributeName).messageKey(messageKey));
+        return ValidationMessages.message("Attribute ''{0}'' can not be empty").arguments(attributeName).messageKey(messageKey);
     }
 }

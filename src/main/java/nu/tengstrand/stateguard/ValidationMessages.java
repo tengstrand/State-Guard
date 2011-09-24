@@ -3,25 +3,51 @@ package nu.tengstrand.stateguard;
 import java.util.*;
 
 public class ValidationMessages implements Iterable<ValidationMessage> {
+    private ValidationMessage currentValidationMessage;
     private final List<ValidationMessage> messages = new ArrayList<ValidationMessage>();
 
     private ValidationMessages() {
+    }
+
+    private ValidationMessages(String message) {
+        currentValidationMessage = new ValidationMessage(message);
+        messages.add(currentValidationMessage);
     }
 
     private ValidationMessages(List<ValidationMessage> messages) {
         this.messages.addAll(messages);
     }
 
-    private ValidationMessages(ValidationMessage validationMessage) {
-        messages.add(validationMessage);
-    }
-
     public static ValidationMessages withoutMessage() {
         return new ValidationMessages();
     }
 
-    public static ValidationMessages add(ValidationMessage validationMessage) {
-        return new ValidationMessages(validationMessage);
+    public static ValidationMessages message(String message) {
+        return new ValidationMessages(message);
+    }
+
+    public ValidationMessages arguments(Object... arguments) {
+        throwExceptionIfCurrentValidationMessageIsNotInitialized();
+        currentValidationMessage.arguments(arguments);
+        return this;
+    }
+
+    public ValidationMessages messageKey(String messageKey) {
+        throwExceptionIfCurrentValidationMessageIsNotInitialized();
+        currentValidationMessage.messageKey(messageKey);
+        return this;
+    }
+
+    private void throwExceptionIfCurrentValidationMessageIsNotInitialized() {
+        if (currentValidationMessage == null) {
+            throw new IllegalStateException("Replace the call to withoutMessage() with addMessage");
+        }
+    }
+
+    public ValidationMessages addMessage(String message) {
+        currentValidationMessage = new ValidationMessage(message);
+        messages.add(currentValidationMessage);
+        return this;
     }
 
     public ValidationMessages mergeMessages(ValidationMessages validationMessages) {
