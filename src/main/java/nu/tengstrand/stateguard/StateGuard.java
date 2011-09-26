@@ -38,14 +38,6 @@ public abstract class StateGuard<T> implements Validatable {
         return validationMessages;
     }
 
-    public List<String> formattedValidationMessages() {
-        return validationMessages().formattedMessages();
-    }
-
-    public List<String> formattedValidationMessages(ResourceBundle resourceBundle) {
-        return validationMessages().formattedMessages(resourceBundle);
-    }
-
     public T asValidState() {
         if (!isValid()) {
             throw new ValidateException(firstValidationMessage());

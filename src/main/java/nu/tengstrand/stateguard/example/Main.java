@@ -39,7 +39,7 @@ public class Main {
 
     private static void printValidationMessages(BookStateGuard stateGuard) {
         System.out.println("Valid=" + stateGuard.isValid());
-        for (String formattedMessage : stateGuard.formattedValidationMessages(resourceBundle)) {
+        for (String formattedMessage : stateGuard.validationMessages().formattedMessages(resourceBundle)) {
             System.out.println(formattedMessage);
         }
     }
