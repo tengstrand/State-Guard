@@ -1,7 +1,7 @@
 package nu.tengstrand.stateguard.example;
 
-import nu.tengstrand.stateguard.Validatable;
 import nu.tengstrand.stateguard.example.book.Book;
+import nu.tengstrand.stateguard.example.book.BookStateGuard;
 import nu.tengstrand.stateguard.example.book.attributes.BookBinding;
 import nu.tengstrand.stateguard.example.book.BookBuilder;
 import nu.tengstrand.stateguard.example.book.BookCreator;
@@ -9,6 +9,8 @@ import nu.tengstrand.stateguard.example.book.BookCreator;
 import java.util.ResourceBundle;
 
 public class Main {
+    static ResourceBundle resourceBundle = ResourceBundle.getBundle("validationMessages");
+
     public static void main(String[] args) {
         System.out.println("----- Build: Missing attributes ------");
         BookBuilder bookBuilder = Book.build().title("My Book");
@@ -24,8 +26,6 @@ public class Main {
         BookCreator bookCreatorWithEmptyTitle = Book.create().title("").paperback().pages(100);
         printValidationMessages(bookCreatorWithEmptyTitle);
 
-        printValidationMessagesUsingResourceBundle(bookCreatorWithEmptyTitle);
-
         System.out.println("\n----- Create: Thick book ------");
         BookCreator thickBookCreator = Book.create().title("Thick book").paperback().pages(3000);
         printValidationMessages(thickBookCreator);
@@ -37,15 +37,9 @@ public class Main {
         System.out.println("Book: " + book);
     }
 
-    public static void printValidationMessages(Validatable validatable) {
-        System.out.println("valid = " + validatable.isValid() + ", message = " + validatable.validationMessages());
-    }
-
-    // Print all formatted messages.
-    // The attribute 'title' is using the message key 'missingvalue' in validationMessages.properties.
-    private static void printValidationMessagesUsingResourceBundle(BookCreator bookCreatorWithEmptyTitle) {
-        ResourceBundle resourceBundle = ResourceBundle.getBundle("validationMessages");
-        for (String formattedMessage : bookCreatorWithEmptyTitle.formattedValidationMessages(resourceBundle)) {
+    private static void printValidationMessages(BookStateGuard stateGuard) {
+        System.out.println("Valid=" + stateGuard.isValid());
+        for (String formattedMessage : stateGuard.formattedValidationMessages(resourceBundle)) {
             System.out.println(formattedMessage);
         }
     }
