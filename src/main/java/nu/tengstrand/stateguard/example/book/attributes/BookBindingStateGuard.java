@@ -14,10 +14,6 @@ public class BookBindingStateGuard extends StateGuard<BookBinding> {
         this.binding.withValue(binding);
     }
 
-    public boolean isPaperback() {
-        return binding.value() == BookBinding.PAPERBACK;
-    }
-
     @Override
     public BookBinding createValidState() {
         return binding.value();
