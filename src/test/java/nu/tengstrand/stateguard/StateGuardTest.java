@@ -7,7 +7,16 @@ public class StateGuardTest {
     private static class X {
     }
 
-    private static class XValidator implements Validatable {
+    private static class ValidXValidator implements Validatable {
+        public boolean isValid() {
+            return true;
+        }
+        public ValidationMessages validationMessages() {
+            return ValidationMessages.withoutMessage();
+        }
+    }
+
+    private static class InvalidXValidator implements Validatable {
         public boolean isValid() {
             return false;
         }
@@ -16,11 +25,11 @@ public class StateGuardTest {
         }
     }
 
-    private static class XStateGuard extends StateGuard<X> {
-        private XValidator XValidator = new XValidator();
+    private static class ValidXStateGuard extends StateGuard<X> {
+        private Validatable validator = new ValidXValidator();
 
-        public XStateGuard() {
-            addValidator(XValidator);
+        public ValidXStateGuard() {
+            addValidator(validator);
         }
 
         @Override
@@ -29,8 +38,26 @@ public class StateGuardTest {
         }
     }
 
+    private static class InvalidXStateGuard extends StateGuard<X> {
+        private Validatable validator = new InvalidXValidator();
+
+        public InvalidXStateGuard() {
+            addValidator(validator);
+        }
+
+        @Override
+        protected X createValidState() {
+            return new X();
+        }
+    }
+
+    @Test
+    public void validState() {
+        new ValidXStateGuard().asValidState();
+    }
+
     @Test(expected = ValidateException.class)
-    public void test() {
-        new XStateGuard().asValidState();
+    public void invalidState() {
+        new InvalidXStateGuard().asValidState();
     }
 }
