@@ -1,12 +1,11 @@
 package nu.tengstrand.stateguard.validator;
 
 import nu.tengstrand.stateguard.Validatable;
-import nu.tengstrand.stateguard.ValidationMessage;
 import nu.tengstrand.stateguard.ValidationMessages;
 
 public class NotNull<T> implements Validatable {
     private final String attributeName;
-    private T notNullObject;
+    private T value;
     private String messageKey;
 
     private NotNull(String attributeName) {
@@ -17,8 +16,9 @@ public class NotNull<T> implements Validatable {
         return new NotNull(attributeName);
     }
 
-    public void withValue(T notNullObject) {
-        this.notNullObject = notNullObject;
+    public NotNull withValue(T value) {
+        this.value = value;
+        return this;
     }
 
     public NotNull withMessageKey(String messageKey) {
@@ -27,11 +27,11 @@ public class NotNull<T> implements Validatable {
     }
 
     public T value() {
-        return notNullObject;
+        return value;
     }
 
     public boolean isValid() {
-        return notNullObject != null;
+        return value != null;
     }
 
     public ValidationMessages validationMessages() {
