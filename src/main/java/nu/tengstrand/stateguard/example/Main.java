@@ -24,11 +24,7 @@ public class Main {
         BookCreator bookCreatorWithEmptyTitle = Book.create().title("").paperback().pages(100);
         printValidationMessages(bookCreatorWithEmptyTitle);
 
-        // Print all formatted messages, the attribute 'title' is using the message key 'missingvalue' in validationMessages.properties.
-        ResourceBundle resourceBundle = ResourceBundle.getBundle("validationMessages");
-        for (String formattedMessage : bookCreatorWithEmptyTitle.formattedValidationMessages(resourceBundle)) {
-            System.out.println(formattedMessage);
-        }
+        printValidationMessagesUsingResourceBundle(bookCreatorWithEmptyTitle);
 
         System.out.println("\n----- Create: Thick book ------");
         BookCreator thickBookCreator = Book.create().title("Thick book").paperback().pages(3000);
@@ -43,5 +39,14 @@ public class Main {
 
     public static void printValidationMessages(Validatable validatable) {
         System.out.println("valid = " + validatable.isValid() + ", message = " + validatable.validationMessages());
+    }
+
+    // Print all formatted messages.
+    // The attribute 'title' is using the message key 'missingvalue' in validationMessages.properties.
+    private static void printValidationMessagesUsingResourceBundle(BookCreator bookCreatorWithEmptyTitle) {
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("validationMessages");
+        for (String formattedMessage : bookCreatorWithEmptyTitle.formattedValidationMessages(resourceBundle)) {
+            System.out.println(formattedMessage);
+        }
     }
 }
