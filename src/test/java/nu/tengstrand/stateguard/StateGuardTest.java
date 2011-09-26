@@ -7,7 +7,7 @@ public class StateGuardTest {
     private static class X {
     }
 
-    private static class VX implements Validatable {
+    private static class XValidator implements Validatable {
         public boolean isValid() {
             return false;
         }
@@ -17,10 +17,10 @@ public class StateGuardTest {
     }
 
     private static class XStateGuard extends StateGuard<X> {
-        private VX vx = new VX();
+        private XValidator XValidator = new XValidator();
 
         public XStateGuard() {
-            addValidator(vx);
+            addValidator(XValidator);
         }
 
         @Override
