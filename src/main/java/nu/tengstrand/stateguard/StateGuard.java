@@ -3,7 +3,6 @@ package nu.tengstrand.stateguard;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public abstract class StateGuard<T> implements Validatable {
     private List<Validatable> validators = new ArrayList<Validatable>();
