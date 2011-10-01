@@ -1,7 +1,6 @@
 package nu.tengstrand.stateguard.example.book;
 
 import nu.tengstrand.stateguard.Validatable;
-import nu.tengstrand.stateguard.ValidationMessage;
 import nu.tengstrand.stateguard.ValidationMessages;
 
 public class PagesValidator implements Validatable {
