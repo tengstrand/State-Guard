@@ -45,6 +45,6 @@ public abstract class StateGuard<T> implements Validatable {
     }
 
     private String firstValidationMessage() {
-        return validators.iterator().next().validationMessages().firstMessage();
+        return validators.iterator().next().validationMessages().firstUnformattedMessage();
     }
 }

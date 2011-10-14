@@ -11,7 +11,7 @@ public class BookTitleStateGuard extends StateGuard<BookTitle> {
     }
 
     public void setTitle(String title) {
-        this.title.withValue(title);
+        this.title.setValue(title);
     }
 
     @Override

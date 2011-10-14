@@ -1,6 +1,9 @@
 package nu.tengstrand.stateguard;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class ValidationMessages implements Iterable<ValidationMessage> {
     private ValidationMessage currentValidationMessage;
@@ -74,9 +77,23 @@ public class ValidationMessages implements Iterable<ValidationMessage> {
         return formattedMessages;
     }
 
-    public String firstMessage() {
+    String firstUnformattedMessage() {
         if (messages.size() > 0) {
             return messages.iterator().next().message;
+        }
+        return "";
+    }
+
+    public String firstMessage() {
+        if (messages.size() > 0) {
+            return messages.iterator().next().getFormattedMessage();
+        }
+        return "";
+    }
+
+    public String firstMessage(ResourceBundle resourceBundle) {
+        if (messages.size() > 0) {
+            return messages.iterator().next().getFormattedMessage(resourceBundle);
         }
         return "";
     }
