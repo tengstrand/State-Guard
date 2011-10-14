@@ -14,7 +14,7 @@ public class PersonFrame extends JFrame {
 
     public PersonFrame(final PersonStateGuard person, final SaveCommand saveCommand) {
         setTitle("State Guard example - by Joakim Tengstrand");
-        setPreferredSize(new Dimension(500, 190));
+        setPreferredSize(new Dimension(450, 190));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Container contentPane = getContentPane();
