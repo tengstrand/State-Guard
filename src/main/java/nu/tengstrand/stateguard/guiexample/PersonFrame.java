@@ -76,14 +76,14 @@ public class PersonFrame extends JFrame {
 
         layout.putConstraint(SpringLayout.WEST, ageLabel, 5, SpringLayout.WEST, contentPane);
         layout.putConstraint(SpringLayout.NORTH, ageLabel, 25, SpringLayout.NORTH, nameTextField);
-        layout.putConstraint(SpringLayout.WEST, ageTextField, 80, SpringLayout.WEST, countryLabel);
+        layout.putConstraint(SpringLayout.WEST, ageTextField, 80, SpringLayout.WEST, contentPane);
         layout.putConstraint(SpringLayout.NORTH, ageTextField, 25, SpringLayout.NORTH, nameTextField);
         layout.putConstraint(SpringLayout.WEST, ageError, 20, SpringLayout.EAST, ageTextField);
         layout.putConstraint(SpringLayout.NORTH, ageError, 25, SpringLayout.NORTH, nameTextField);
 
         layout.putConstraint(SpringLayout.WEST, countryLabel, 5, SpringLayout.WEST, contentPane);
         layout.putConstraint(SpringLayout.NORTH, countryLabel, 25, SpringLayout.NORTH, ageTextField);
-        layout.putConstraint(SpringLayout.WEST, countryTextField, 80, SpringLayout.WEST, countryLabel);
+        layout.putConstraint(SpringLayout.WEST, countryTextField, 80, SpringLayout.WEST, contentPane);
         layout.putConstraint(SpringLayout.NORTH, countryTextField, 25, SpringLayout.NORTH, ageTextField);
         layout.putConstraint(SpringLayout.WEST, countryError, 20, SpringLayout.EAST, countryTextField);
         layout.putConstraint(SpringLayout.NORTH, countryError, 25, SpringLayout.NORTH, ageTextField);
